@@ -6,6 +6,7 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   printenv
   echo clang overrides
   export CXX=$CLANGXX
+  export CXX11=$CLANGXX
   export CC=$CLANG
   export PATH="/usr/local/opt/llvm/bin:$PATH"
   export LDFLAGS="-L/usr/local/opt/llvm/lib $LDFLAGS"
