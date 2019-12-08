@@ -7,7 +7,17 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   echo clang overrides
   export CXX=$CLANGXX
   export CC=$CLANG
-   
+  export PATH="/usr/local/opt/llvm/bin:$PATH"
+  export LDFLAGS="-L/usr/local/opt/llvm/lib" $LDFLAGS
+  export CPPFLAGS="-I/usr/local/opt/llvm/include"  $CPPFLAGS
+  
+  echo CXX: $CXX
+  echo CC: $CC
+  echo LDFLAGS: $LDFLAGS
+  echo CXXFLAGS: $CXXFLAGS
+ 
+  echo clang overrides end
+ 
   $R CMD INSTALL --build .
 else
   mkdir -p $PREFIX/lib/R/library/fst
