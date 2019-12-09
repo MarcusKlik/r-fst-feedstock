@@ -13,9 +13,16 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   export CPPFLAGS="-I/usr/local/opt/llvm/include $CPPFLAGS"
   
   echo CXX: $CXX
+  echo CXX11: $CXX11
   echo CC: $CC
   echo LDFLAGS: $LDFLAGS
   echo CXXFLAGS: $CXXFLAGS
+ 
+  ${R_HOME}/bin/R CMD config CC
+  ${R_HOME}/bin/R CMD config CXX
+  ${R_HOME}/bin/R CMD config CXX11
+  ${R_HOME}/bin/R CMD config LDFLAGS
+  ${R_HOME}/bin/R CMD config CXXFLAGS
  
   echo clang overrides end
  
