@@ -22,7 +22,6 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}      # [not win]
-    - {{native}}toolchain        # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}make
     - {{posix}}sed               # [win]

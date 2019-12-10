@@ -2,10 +2,15 @@
 if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $target_platform == win-64 ]] || [[ $target_platform == osx-64 ]]; then
   export DISABLE_AUTOBREW=1
   
+  echo
   echo show environment
+  echo
+  
   printenv
   
+  echo
   echo clang overrides
+  echo
   
   export CXX=$CLANGXX
   export CXX11=$CLANGXX
@@ -25,8 +30,19 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   $R CMD config CXX11
   $R CMD config LDFLAGS
   $R CMD config CXXFLAGS
+
+  echo
+  echo show clang folder
+  echo
  
-  echo clang overrides end
+  ls /usr/local/opt/llvm/bin
+ 
+  echo
+  echo start build
+  echo
+
+  export CXX=/usr/local/opt/llvm/bin/clang++
+  export CC=/usr/local/opt/llvm/bin/clang
 
   $R CMD INSTALL --build .
 else
