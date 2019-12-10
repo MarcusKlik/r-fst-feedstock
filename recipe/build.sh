@@ -13,20 +13,11 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   echo CPPFLAGS: $CPPFLAGS
  
   echo
-  echo show build tree
-  echo
-
-  ls -R $BUILD_PREFIX
-
-  echo
   echo show clang version
   echo
 
   export CC = x86_64-apple-darwin13.4.0-clang++
   
-  x86_64-apple-darwin13.4.0-clang --version
-  x86_64-apple-darwin13.4.0-clang++ --version
- 
   echo
   echo start build
   echo
