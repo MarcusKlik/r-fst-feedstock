@@ -22,10 +22,10 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   echo show clang version
   echo
 
+  export CC = x86_64-apple-darwin13.4.0-clang++
+  
   x86_64-apple-darwin13.4.0-clang --version
   x86_64-apple-darwin13.4.0-clang++ --version
-  clang --version
-  clang++ --version
  
   echo
   echo start build
