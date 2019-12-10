@@ -20,11 +20,11 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   echo LDFLAGS: $LDFLAGS
   echo CXXFLAGS: $CXXFLAGS
  
-  ${R_HOME}/bin/R CMD config CC
-  ${R_HOME}/bin/R CMD config CXX
-  ${R_HOME}/bin/R CMD config CXX11
-  ${R_HOME}/bin/R CMD config LDFLAGS
-  ${R_HOME}/bin/R CMD config CXXFLAGS
+  $R CMD config CC
+  $R CMD config CXX
+  $R CMD config CXX11
+  $R CMD config LDFLAGS
+  $R CMD config CXXFLAGS
  
   echo clang overrides end
 
