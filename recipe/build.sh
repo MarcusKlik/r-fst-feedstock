@@ -1,6 +1,33 @@
 #!/bin/bash
 if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $target_platform == win-64 ]] || [[ $target_platform == osx-64 ]]; then
   export DISABLE_AUTOBREW=1
+  
+  echo show environment
+  printenv
+  
+  echo clang overrides
+  
+  export CXX=$CLANGXX
+  export CXX11=$CLANGXX
+  export CC=$CLANG
+  export PATH="/usr/local/opt/llvm/bin:$PATH"
+  export LDFLAGS="-L/usr/local/opt/llvm/lib $LDFLAGS"
+  export CPPFLAGS="-I/usr/local/opt/llvm/include $CPPFLAGS"
+  
+  echo CXX: $CXX
+  echo CXX11: $CXX11
+  echo CC: $CC
+  echo LDFLAGS: $LDFLAGS
+  echo CXXFLAGS: $CXXFLAGS
+ 
+  ${R_HOME}/bin/R CMD config CC
+  ${R_HOME}/bin/R CMD config CXX
+  ${R_HOME}/bin/R CMD config CXX11
+  ${R_HOME}/bin/R CMD config LDFLAGS
+  ${R_HOME}/bin/R CMD config CXXFLAGS
+ 
+  echo clang overrides end
+
   $R CMD INSTALL --build .
 else
   mkdir -p $PREFIX/lib/R/library/fst
