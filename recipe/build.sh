@@ -3,39 +3,20 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   export DISABLE_AUTOBREW=1
   
   echo
-  echo show environment
-  echo
-  
-  printenv
-  
-  echo
   echo clang overrides
   echo
-  
-  export CXX=$CLANGXX
-  export CXX11=$CLANGXX
-  export CC=$CLANG
-  export PATH="/usr/local/opt/llvm/bin:$PATH"
-  export LDFLAGS="-L/usr/local/opt/llvm/lib $LDFLAGS"
-  export CPPFLAGS="-I/usr/local/opt/llvm/include $CPPFLAGS"
-  
+   
   echo CXX: $CXX
   echo CXX11: $CXX11
   echo CC: $CC
   echo LDFLAGS: $LDFLAGS
   echo CPPFLAGS: $CPPFLAGS
  
-  $R CMD config CC
-  $R CMD config CXX
-  $R CMD config CXX11
-  $R CMD config LDFLAGS
-  $R CMD config CXXFLAGS
-
   echo
   echo show build tree
   echo
 
-  tree $BUILD_PREFIX
+  ls -R $BUILD_PREFIX
 
   echo
   echo show clang version
