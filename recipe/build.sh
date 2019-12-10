@@ -23,7 +23,7 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   echo CXX11: $CXX11
   echo CC: $CC
   echo LDFLAGS: $LDFLAGS
-  echo CXXFLAGS: $CXXFLAGS
+  echo CPPFLAGS: $CPPFLAGS
  
   $R CMD config CC
   $R CMD config CXX
@@ -32,17 +32,23 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   $R CMD config CXXFLAGS
 
   echo
-  echo show clang folder
+  echo show build tree
   echo
- 
-  ls /usr/local/opt/llvm/bin
+
+  tree $BUILD_PREFIX
+
+  echo
+  echo show clang version
+  echo
+
+  x86_64-apple-darwin13.4.0-clang --version
+  x86_64-apple-darwin13.4.0-clang++ --version
+  clang --version
+  clang++ --version
  
   echo
   echo start build
   echo
-
-  export CXX=/usr/local/opt/llvm/bin/clang++
-  export CC=/usr/local/opt/llvm/bin/clang
 
   $R CMD INSTALL --build .
 else
