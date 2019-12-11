@@ -6,17 +6,23 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   echo clang overrides
   echo
    
+  echo PREFIX: $PREFIX
   echo CXX: $CXX
-  echo CXX11: $CXX11
+  echo CXX11: $CXX
   echo CC: $CC
   echo LDFLAGS: $LDFLAGS
   echo CPPFLAGS: $CPPFLAGS
+  echo PATH: $PATH
  
   echo
   echo show clang version
   echo
+  
+  x86_64-apple-darwin13.4.0-clang++ --version
+  x86_64-apple-darwin13.4.0-clang --version
 
   export CC=x86_64-apple-darwin13.4.0-clang++
+  export LDFLAGS=-stdlib=libc++ $LDFLAGS
   
   echo
   echo start build
