@@ -23,13 +23,17 @@ elif [[ $target_platform == osx-64 ]]; then
 
   export CXX="$CXX -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
   export CXX11="$CXX -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
-   
+
+  export CLANGXX="$CLANGXX -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
+  export CLANG="$CLANG -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
+
   echo PREFIX: $PREFIX
   echo CXX: $CXX
   echo CXX11: $CXX
   echo CC: $CC
   echo LDFLAGS: $LDFLAGS
   echo CPPFLAGS: $CPPFLAGS
+  echo CXXFLAGS: $CXXFLAGS
   echo PATH: $PATH
 
   echo
