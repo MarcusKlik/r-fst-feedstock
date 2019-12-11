@@ -19,6 +19,7 @@ elif [[ $target_platform == osx-64 ]]; then
   export PATH="$BUILD_PREFIX/bin:$PATH"
   export LDFLAGS="-L$BUILD_PREFIX/lib $LDFLAGS"
   export CPPFLAGS="-I$BUILD_PREFIX/include $CPPFLAGS"
+  export CXXFLAGS="-I$BUILD_PREFIX/include $CXXFLAGS"
 
   export CXX="$CXX -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
   export CXX11="$CXX -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
