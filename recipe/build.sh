@@ -21,9 +21,10 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   x86_64-apple-darwin13.4.0-clang++ --version
   x86_64-apple-darwin13.4.0-clang --version
 
-  export CC=x86_64-apple-darwin13.4.0-clang++
-  export LDFLAGS=-stdlib=libc++ $LDFLAGS
-  
+  export PATH="$BUILD_PREFIX/bin:$PATH"
+  export LDFLAGS="-L$BUILD_PREFIX/lib $LDFLAGS"
+  export CPPFLAGS="-I$BUILD_PREFIX/include $CPPFLAGS"
+	
   echo
   echo start build
   echo
