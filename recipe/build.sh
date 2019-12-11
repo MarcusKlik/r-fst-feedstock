@@ -1,10 +1,27 @@
 #!/bin/bash
-if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $target_platform == win-64 ]] || [[ $target_platform == osx-64 ]]; then
+if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $target_platform == win-64 ]]; then
+  $R CMD INSTALL --build .
+
+elif [[ $target_platform == osx-64 ]]; then
+
   export DISABLE_AUTOBREW=1
   
   echo
-  echo clang overrides
+  echo list tree
   echo
+
+  ls -R $BUILD_PREFIX
+
+  echo
+  echo exports
+  echo
+
+  export PATH="$BUILD_PREFIX/bin:$PATH"
+  export LDFLAGS="-L$BUILD_PREFIX/lib $LDFLAGS"
+  export CPPFLAGS="-I$BUILD_PREFIX/include $CPPFLAGS"
+
+  export CXX="$CXX -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
+  export CXX11="$CXX -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
    
   echo PREFIX: $PREFIX
   echo CXX: $CXX
@@ -13,17 +30,13 @@ if [[ $target_platform =~ linux.* ]] || [[ $target_platform == win-32 ]] || [[ $
   echo LDFLAGS: $LDFLAGS
   echo CPPFLAGS: $CPPFLAGS
   echo PATH: $PATH
- 
+
   echo
   echo show clang version
   echo
   
   x86_64-apple-darwin13.4.0-clang++ --version
   x86_64-apple-darwin13.4.0-clang --version
-
-  export PATH="$BUILD_PREFIX/bin:$PATH"
-  export LDFLAGS="-L$BUILD_PREFIX/lib $LDFLAGS"
-  export CPPFLAGS="-I$BUILD_PREFIX/include $CPPFLAGS"
 	
   echo
   echo start build
