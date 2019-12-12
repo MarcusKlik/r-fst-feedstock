@@ -18,14 +18,9 @@ elif [[ $target_platform == osx-64 ]]; then
 
   export PATH="$BUILD_PREFIX/bin:$PATH"
   export LDFLAGS="-L$BUILD_PREFIX/lib $LDFLAGS"
-  export CPPFLAGS="-I$BUILD_PREFIX/include $CPPFLAGS"
+  export CPPFLAGS="-I$BUILD_PREFIX/include $CPPFLAGS" 
   export CXXFLAGS="-I$BUILD_PREFIX/include $CXXFLAGS"
-
-  export CXX="$CXX -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
-  export CXX11="$CXX -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
-
-  export CLANGXX="$CLANGXX -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
-  export CLANG="$CLANG -I$BUILD_PREFIX/include -L$BUILD_PREFIX/lib"
+  export LD_LIBRARY_PATH=$BUILD_PREFIX/lib
 
   echo PREFIX: $PREFIX
   echo CXX: $CXX
@@ -35,6 +30,7 @@ elif [[ $target_platform == osx-64 ]]; then
   echo CPPFLAGS: $CPPFLAGS
   echo CXXFLAGS: $CXXFLAGS
   echo PATH: $PATH
+  echo LD_LIBRARY_PATH: $LD_LIBRARY_PATH
 
   echo
   echo show clang version
